@@ -34,11 +34,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 30px;
 }
 
 .profile__img {
-    max-width: 168px;
-    max-height: 127px;
+    max-width: 120px;
     border-radius: 50%;
 }
 
@@ -72,7 +72,16 @@
     margin-top: 16px;
 }
 
-.profile__mesto {}
+.profile__mesto {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .grid-conteiner {}
 
