@@ -1,0 +1,52 @@
+/* ! Подключение файла normalize и шрифтов */
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
+
+/* ! Главный блок pages */
+@import url(../blocks/page/page.css);
+
+/* ! Блок header */
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+/* ! Блок profile */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__content/profile__content.css);
+@import url(../blocks/profile/__img/profile__img.css);
+@import url(../blocks/profile/__text-content/profile__text-content.css);
+@import url(../blocks/profile/__element/profile__element.css);
+@import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__editor/profile__editor.css);
+@import url(../blocks/profile/__pen/profile__pen.css);
+@import url(../blocks/profile/__subtitle/profile__subtitle.css);
+@import url(../blocks/profile/__mesto/profile__mesto.css);
+@import url(../blocks/profile/__cross/profile__cross.css);
+
+/* ! Блок grid-conteiner */
+@import url(../blocks/grid-conteiner/grid-conteiner.css);
+
+/* !  Блок grid-element */
+@import url(../blocks/grid-element/grid-element.css);
+@import url(../blocks/grid-element/__img/grid-element__img.css);
+@import url(../blocks/grid-element/__title/grid-element__title.css);
+@import url(../blocks/grid-element/__sign/grid-element__sign.css);
+@import url(../blocks/grid-element/__like/grid-element__like.css);
+
+/* ! Блок footer */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__title/footer__title.css);
+
+/* ! Блоки анимации */
+@import url(../blocks/vision/vision.css);
+@import url(../blocks/vision-like/vision-like.css);
+@import url(../blocks/vision-btn/vision-btn.css);
+
+/* ! Блок pop-up */
+@import url(../blocks/pop-up/pop-up.css);
+@import url(../blocks/pop-up/_opened/pop-up_opened.css);
+@import url(../blocks/pop-up/__container/pop-up__container.css);
+@import url(../blocks/pop-up/__cross/pop-up__cross.css);
+@import url(../blocks/pop-up/__title/pop-up__title.css);
+@import url(../blocks/pop-up/__name/pop-up__name.css);
+@import url(../blocks/pop-up/__sign/pop-up__sign.css);
+@import url(../blocks/pop-up/__submit/pop-up__submit.css);

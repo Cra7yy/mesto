@@ -1,0 +1,19 @@
+.profile__editor {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #FFFFFF;
+  margin-left: 18px;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 645px) {
+  .profile__editor {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    margin-top: 22px;
+  }
+}

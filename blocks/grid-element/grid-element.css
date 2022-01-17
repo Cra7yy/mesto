@@ -1,0 +1,12 @@
+.grid-element {
+  max-width: 282px;
+  max-height: 361px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 975px) {
+  .grid-element {
+    justify-self: center;
+  }
+}
