@@ -1,82 +1,96 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/debfde0f67.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./style.css">
-    <title>Mesto</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/debfde0f67.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./vendor/normalize.css">
+  <link rel="stylesheet" href="./vendor/fonts.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <title>Mesto</title>
 </head>
 <body class="page">
 <header class="header">
-    <img src="./images/logo.png" alt="логотип" class="header__logo">
+  <img src="./images/logo.png" alt="логотип" class="header__logo">
 </header>
 <main class="main">
-    <section class="profile">
-        <div class="profile__content">
-            <img src="./images/image.jpg" alt="фото профиля" class="profile__img">
-            <div class="profile__text-content">
-                <div class="profile__element">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__editor vision">
-                        <img src="./images/pen.png" alt="ручка" class="profile__pen">
-                    </button>
-                </div>
-                <h3 class="profile__subtitle">Исследователь океана</h3>
-            </div>
+  <section class="profile">
+    <div class="profile__content">
+      <img src="./images/image.jpg" alt="фото профиля" class="profile__img">
+      <div class="profile__text-content">
+        <div class="profile__element">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__editor vision">
+            <img src="./images/pen.png" alt="ручка" class="profile__pen">
+          </button>
         </div>
-        <button class="profile__mesto vision">
-            <img src="./images/cross.png" alt="крест" class="profile__cross">
-        </button>
-    </section>
-    <section class="grid-conteiner">
-        <div class="grid-element">
-            <img src="./images/beach.jpg" alt="пляж" class="grid-element__img">
-            <div class="grid-element__sign">
-                <h2 class="grid-element__title">Пляж на берегу океана</h2>
-                <i class="vision-like grid-element__like far fa-heart"></i>
-            </div>
-        </div>
-        <div class="grid-element">
-            <img src="./images/castle.jpg" alt="замок" class="grid-element__img">
-            <div class="grid-element__sign">
-                <h2 class="grid-element__title">Замок Златоуста Локонса</h2>
-                <i class="vision-like grid-element__like far fa-heart"></i>
-            </div>
-        </div>
-        <div class="grid-element">
-            <img src="./images/mountain.jpg" alt="гора" class="grid-element__img">
-            <div class="grid-element__sign">
-                <h2 class="grid-element__title">Замершие холмы</h2>
-                <i class="vision-like grid-element__like far fa-heart"></i>
-            </div>
-        </div>
-        <div class="grid-element">
-            <img src="./images/palm.jpg" alt="пальма" class="grid-element__img">
-            <div class="grid-element__sign">
-                <h2 class="grid-element__title">Высокая пальма</h2>
-                <i class="vision-like grid-element__like far fa-heart"></i>
-            </div>
-        </div>
-        <div class="grid-element">
-            <img src="./images/road.jpg" alt="дорога" class="grid-element__img">
-            <div class="grid-element__sign">
-                <h2 class="grid-element__title">Асфальтированная дорога</h2>
-                <i class="vision-like grid-element__like far fa-heart"></i>
-            </div>
-        </div>
-        <div class="grid-element">
-            <img src="./images/winter_forest.jpg" alt="зимний лес" class="grid-element__img">
-            <div class="grid-element__sign">
-                <h2 class="grid-element__title">Зимний лес</h2>
-                <i class="vision-like grid-element__like far fa-heart"></i>
-            </div>
-        </div>
-    </section>
+        <h3 class="profile__subtitle">Исследователь океана</h3>
+      </div>
+    </div>
+    <button class="profile__mesto vision">
+      <img src="./images/cross.png" alt="крест" class="profile__cross">
+    </button>
+  </section>
+  <section class="grid-conteiner">
+    <div class="grid-element">
+      <img src="./images/beach.jpg" alt="пляж" class="grid-element__img">
+      <div class="grid-element__sign">
+        <h2 class="grid-element__title">Пляж на берегу океана</h2>
+        <i class="vision-like grid-element__like far fa-heart"></i>
+      </div>
+    </div>
+    <div class="grid-element">
+      <img src="./images/castle.jpg" alt="замок" class="grid-element__img">
+      <div class="grid-element__sign">
+        <h2 class="grid-element__title">Замок Златоуста Локонса</h2>
+        <i class="vision-like grid-element__like far fa-heart"></i>
+      </div>
+    </div>
+    <div class="grid-element">
+      <img src="./images/mountain.jpg" alt="гора" class="grid-element__img">
+      <div class="grid-element__sign">
+        <h2 class="grid-element__title">Замершие холмы</h2>
+        <i class="vision-like grid-element__like far fa-heart"></i>
+      </div>
+    </div>
+    <div class="grid-element">
+      <img src="./images/palm.jpg" alt="пальма" class="grid-element__img">
+      <div class="grid-element__sign">
+        <h2 class="grid-element__title">Высокая пальма</h2>
+        <i class="vision-like grid-element__like far fa-heart"></i>
+      </div>
+    </div>
+    <div class="grid-element">
+      <img src="./images/road.jpg" alt="дорога" class="grid-element__img">
+      <div class="grid-element__sign">
+        <h2 class="grid-element__title">Асфальтированная дорога</h2>
+        <i class="vision-like grid-element__like far fa-heart"></i>
+      </div>
+    </div>
+    <div class="grid-element">
+      <img src="./images/winter_forest.jpg" alt="зимний лес" class="grid-element__img">
+      <div class="grid-element__sign">
+        <h2 class="grid-element__title">Зимний лес</h2>
+        <i class="vision-like grid-element__like far fa-heart"></i>
+      </div>
+    </div>
+  </section>
 </main>
 <footer class="footer">
-    <h3 class="footer__title">© 2022 Mesto Russia</h3>
+  <h3 class="footer__title">© 2022 Mesto Russia</h3>
 </footer>
+<div class="pop-up">
+    <div class="pop-up__container">
+        <img src="./images/pop-up_close.png" alt="выход" class="pop-up-cross vision-btn">
+        <h2 class="pop-up__title">Редактировать профиль</h2>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <input type="text" name="user-name" value="" class="pop-up__name">
+            <input type="text" name="user-sign" value="" class="pop-up__sign">
+            <button type="submit" class="pop-up__submit">Сохранить</button>
+        </form>
+    </div>
+</div>
+<script src="./scripts/script.js"></script>
 </body>
 </html>
