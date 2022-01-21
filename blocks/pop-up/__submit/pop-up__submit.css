@@ -10,6 +10,12 @@
   color: #FFFFFF;
   margin-top: 48px;
   margin-left: 36px;
+  cursor: pointer;
+}
+
+.pop-up__submit:hover {
+  opacity: 0.8;
+  transition-duration: 0.3s;
 }
 
 @media screen and (max-width: 645px) {

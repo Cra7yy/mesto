@@ -31,15 +31,11 @@
 @import url(../blocks/grid-element/__title/grid-element__title.css);
 @import url(../blocks/grid-element/__sign/grid-element__sign.css);
 @import url(../blocks/grid-element/__like/grid-element__like.css);
+@import url(../blocks/grid-element/__like/_action/grid-element__like_action.css);
 
 /* ! Блок footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__title/footer__title.css);
-
-/* ! Блоки анимации */
-@import url(../blocks/vision/vision.css);
-@import url(../blocks/vision-like/vision-like.css);
-@import url(../blocks/vision-btn/vision-btn.css);
 
 /* ! Блок pop-up */
 @import url(../blocks/pop-up/pop-up.css);

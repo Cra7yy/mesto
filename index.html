@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/debfde0f67.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
@@ -21,15 +20,15 @@
         <div class="profile__text-content">
           <div class="profile__element">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__editor vision">
-              <img src="./images/pen.png" alt="ручка" class="profile__pen">
+            <button type="button" class="profile__editor">
+              <img src="./images/pen.svg" alt="ручка" class="profile__pen">
             </button>
           </div>
           <h3 class="profile__subtitle">Исследователь океана</h3>
         </div>
       </div>
-      <button class="profile__mesto vision">
-        <img src="./images/cross.png" alt="крест" class="profile__cross">
+      <button type="button" class="profile__mesto">
+        <img src="./images/cross.svg" alt="крест" class="profile__cross">
       </button>
     </section>
     <section class="grid-conteiner">
@@ -37,42 +36,42 @@
         <img src="./images/beach.jpg" alt="пляж" class="grid-element__img">
         <div class="grid-element__sign">
           <h2 class="grid-element__title">Пляж на берегу океана</h2>
-          <i class="vision-like grid-element__like far fa-heart"></i>
+          <button type="button" class="grid-element__like"></button>
         </div>
       </div>
       <div class="grid-element">
         <img src="./images/castle.jpg" alt="замок" class="grid-element__img">
         <div class="grid-element__sign">
           <h2 class="grid-element__title">Замок Златоуста Локонса</h2>
-          <i class="vision-like grid-element__like far fa-heart"></i>
+          <button type="button" class="grid-element__like"></button>
         </div>
       </div>
       <div class="grid-element">
         <img src="./images/mountain.jpg" alt="гора" class="grid-element__img">
         <div class="grid-element__sign">
           <h2 class="grid-element__title">Замершие холмы</h2>
-          <i class="vision-like grid-element__like far fa-heart"></i>
+          <button type="button" class="grid-element__like"></button>
         </div>
       </div>
       <div class="grid-element">
         <img src="./images/palm.jpg" alt="пальма" class="grid-element__img">
         <div class="grid-element__sign">
           <h2 class="grid-element__title">Высокая пальма</h2>
-          <i class="vision-like grid-element__like far fa-heart"></i>
+          <button type="button" class="grid-element__like"></button>
         </div>
       </div>
       <div class="grid-element">
         <img src="./images/road.jpg" alt="дорога" class="grid-element__img">
         <div class="grid-element__sign">
           <h2 class="grid-element__title">Асфальтированная дорога</h2>
-          <i class="vision-like grid-element__like far fa-heart"></i>
+          <button type="button" class="grid-element__like"></button>
         </div>
       </div>
       <div class="grid-element">
         <img src="./images/winter_forest.jpg" alt="зимний лес" class="grid-element__img">
         <div class="grid-element__sign">
           <h2 class="grid-element__title">Зимний лес</h2>
-          <i class="vision-like grid-element__like far fa-heart"></i>
+          <button type="button" class="grid-element__like"></button>
         </div>
       </div>
     </section>
@@ -82,7 +81,7 @@
   </footer>
   <div class="pop-up">
     <div class="pop-up__container">
-      <img src="./images/pop-up_close.png" alt="выход" class="pop-up__cross vision-btn">
+      <button type="button" class="pop-up__cross"></button>
       <h2 class="pop-up__title">Редактировать профиль</h2>
       <form action="#" method="post" enctype="multipart/form-data">
         <input type="text" name="user-name" value="" class="pop-up__name">

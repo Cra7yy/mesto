@@ -36,7 +36,6 @@ popupSubmit.addEventListener('click', (event) => {
 // переключения вида сердечка с не активного в активное состояние и обратно
 gridElementLikes.forEach((like) => {
   like.addEventListener('click', () => {
-    like.classList.toggle('far')
-    like.classList.toggle('fas')
+    like.classList.toggle('grid-element__like_action')
   })
 })

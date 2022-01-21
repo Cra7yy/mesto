@@ -1,12 +1,20 @@
 .grid-element__like {
   width: 22px;
   height: 19px;
-  color: black;
-  padding-right: 15px;
+  margin-right: 15px;
+  background-image: url("../../../images/like.svg");
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 645px) {
   .grid-element__like {
-    padding-right: 20px;
+    margin-right: 20px;
   }
+}
+
+.grid-element__like:hover {
+  opacity: 0.5;
+  transition-duration: 0.3s;
 }

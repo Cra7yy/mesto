@@ -5,12 +5,7 @@
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  top: calc(50% - 165px);
-  z-index: 2;
+  position: relative;
 }
 
 @media screen and (max-width: 645px) {
