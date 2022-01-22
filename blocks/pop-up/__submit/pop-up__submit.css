@@ -1,4 +1,7 @@
 .pop-up__submit {
+  margin: 0;
+  padding: 0;
+  border: none;
   width: 358px;
   height: 50px;
   background-color: #000000;
@@ -10,6 +13,7 @@
   color: #FFFFFF;
   margin-top: 48px;
   margin-left: 36px;
+  margin-bottom: 37px;
   cursor: pointer;
 }
 
@@ -25,5 +29,7 @@
     font-size: 14px;
     line-height: 17px;
     margin-left: 22px;
+    margin-top: 45px;
+    margin-bottom: 25px;
   }
 }

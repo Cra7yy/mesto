@@ -11,7 +11,7 @@
 
 <body class="page">
   <header class="header">
-    <img src="./images/logo.png" alt="логотип" class="header__logo">
+    <img src="./images/Logo.svg" alt="логотип" class="header__logo">
   </header>
   <main class="main">
     <section class="profile">
@@ -24,7 +24,7 @@
               <img src="./images/pen.svg" alt="ручка" class="profile__pen">
             </button>
           </div>
-          <h3 class="profile__subtitle">Исследователь океана</h3>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
       </div>
       <button type="button" class="profile__mesto">
@@ -77,15 +77,15 @@
     </section>
   </main>
   <footer class="footer">
-    <h3 class="footer__title">© 2022 Mesto Russia</h3>
+    <p class="footer__title">© 2022 Mesto Russia</p>
   </footer>
   <div class="pop-up">
     <div class="pop-up__container">
       <button type="button" class="pop-up__cross"></button>
       <h2 class="pop-up__title">Редактировать профиль</h2>
-      <form action="#" method="post" enctype="multipart/form-data">
-        <input type="text" name="user-name" value="" class="pop-up__name">
-        <input type="text" name="user-sign" value="" class="pop-up__sign">
+      <form name="profile" action="#" method="post" enctype="multipart/form-data" class="pop-up__form">
+        <input type="text" name="user-name" value="" class="pop-up__input pop-up__input_name">
+        <input type="text" name="user-sign" value="" class="pop-up__input pop-up__input_sign">
         <button type="submit" class="pop-up__submit">Сохранить</button>
       </form>
     </div>

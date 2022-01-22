@@ -3,12 +3,7 @@
   max-width: 880px;
   background-color: #000000;
   color: #FFFFFF;
-  font-family: "Inter", "Arial", "sans-serif";
+  font-family: "Inter", "Arial", sans-serif;
 }
 
-@media screen and (max-width: 975px) {
-  .page {
-    padding-left: 19px;
-    padding-right: 19px;
-  }
-}
+
