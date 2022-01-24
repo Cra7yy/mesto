@@ -2,9 +2,3 @@
   max-width: 120px;
   border-radius: 50%;
 }
-
-@media screen and (max-width: 645px) {
-  .profile__img {
-    margin-top: 38px;
-  }
-}
