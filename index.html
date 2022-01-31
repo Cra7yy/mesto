@@ -13,7 +13,9 @@
   <header class="header">
     <img src="./images/Logo.svg" alt="логотип" class="header__logo">
   </header>
+
   <main class="main">
+
     <section class="profile">
       <div class="profile__content">
         <img src="./images/image.jpg" alt="фото профиля" class="profile__img">
@@ -31,65 +33,64 @@
         <img src="./images/cross.svg" alt="крест" class="profile__cross">
       </button>
     </section>
-    <section class="grid-conteiner">
-      <div class="grid-element">
-        <img src="./images/beach.jpg" alt="пляж" class="grid-element__img">
-        <div class="grid-element__sign">
-          <h2 class="grid-element__title">Пляж на берегу океана</h2>
-          <button type="button" class="grid-element__like"></button>
-        </div>
-      </div>
-      <div class="grid-element">
-        <img src="./images/castle.jpg" alt="замок" class="grid-element__img">
-        <div class="grid-element__sign">
-          <h2 class="grid-element__title">Замок Златоуста Локонса</h2>
-          <button type="button" class="grid-element__like"></button>
-        </div>
-      </div>
-      <div class="grid-element">
-        <img src="./images/mountain.jpg" alt="гора" class="grid-element__img">
-        <div class="grid-element__sign">
-          <h2 class="grid-element__title">Замершие холмы</h2>
-          <button type="button" class="grid-element__like"></button>
-        </div>
-      </div>
-      <div class="grid-element">
-        <img src="./images/palm.jpg" alt="пальма" class="grid-element__img">
-        <div class="grid-element__sign">
-          <h2 class="grid-element__title">Высокая пальма</h2>
-          <button type="button" class="grid-element__like"></button>
-        </div>
-      </div>
-      <div class="grid-element">
-        <img src="./images/road.jpg" alt="дорога" class="grid-element__img">
-        <div class="grid-element__sign">
-          <h2 class="grid-element__title">Асфальтированная дорога</h2>
-          <button type="button" class="grid-element__like"></button>
-        </div>
-      </div>
-      <div class="grid-element">
-        <img src="./images/winter_forest.jpg" alt="зимний лес" class="grid-element__img">
-        <div class="grid-element__sign">
-          <h2 class="grid-element__title">Зимний лес</h2>
-          <button type="button" class="grid-element__like"></button>
-        </div>
-      </div>
-    </section>
+
+    <section class="grid-conteiner"></section>
+
   </main>
+
   <footer class="footer">
     <p class="footer__title">© 2022 Mesto Russia</p>
   </footer>
-  <div class="pop-up">
-    <div class="pop-up__container">
-      <button type="button" class="pop-up__cross"></button>
-      <h2 class="pop-up__title">Редактировать профиль</h2>
-      <form name="profile" action="#" method="post" enctype="multipart/form-data" class="pop-up__form">
-        <input type="text" name="user-name" value="" class="pop-up__input pop-up__input_value_name">
-        <input type="text" name="user-sign" value="" class="pop-up__input pop-up__input_value_sign">
-        <button type="submit" class="pop-up__submit">Сохранить</button>
-      </form>
+
+  <template id="popup-profile">
+    <div class="pop-up">
+      <div class="pop-up__container">
+        <button type="button" class="pop-up__cross"></button>
+        <h2 class="pop-up__title">Редактировать профиль</h2>
+        <form name="profile" action="#" method="post" enctype="multipart/form-data" class="pop-up__form">
+          <input type="text" name="user-name" value="" class="pop-up__input pop-up__input_value_name">
+          <input type="text" name="user-sign" value="" class="pop-up__input pop-up__input_value_sign">
+          <button type="submit" class="pop-up__submit">Сохранить</button>
+        </form>
+      </div>
     </div>
-  </div>
+  </template>
+
+  <template id="popup-mesto">
+    <div class="pop-up pop-up-mesto">
+      <div class="pop-up__container pop-up-mesto__container">
+        <button type="button" class="pop-up__cross pop-up-mesto__cross"></button>
+        <h2 class="pop-up__title">Новое место</h2>
+        <form name="mesto" action="#" method="post" enctype="multipart/form-data" class="pop-up__form pop-up-mesto__form">
+          <input type="text" name="user-name" value="" class="pop-up__input pop-up__input_value_mesto" placeholder="Название">
+          <input type="text" name="user-sign" value="" class="pop-up__input pop-up__input_value_src" placeholder="Ссылка на картинку">
+          <button type="submit" class="pop-up__submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </template>
+
+      <template id="grid-content">
+      <div class="grid-element">
+        <button type="button" class="grid-element__remove"></button>
+        <img src="" alt="пляж" class="grid-element__img">
+        <div class="grid-element__sign">
+          <h2 class="grid-element__title"></h2>
+          <button type="button" class="grid-element__like"></button>
+        </div>
+      </div>
+    </template>
+
+    <template id='pop-up-img'>
+      <div class="pop-up pop-up-image">
+        <div class="pop-up-image__content">
+          <button type="button" class="pop-up__cross pop-up-image__cross"></button>
+          <img class="pop-up-image__src" src="" alt="">
+          <h2 class="pop-up-image__name"></h2>
+        </div>
+      </div>
+    </template>
+
   <script src="./scripts/script.js"></script>
 </body>
 

@@ -23,6 +23,7 @@
 @import url(../blocks/grid-conteiner/grid-conteiner.css);
 
 @import url(../blocks/grid-element/grid-element.css);
+@import url(../blocks/grid-element/__remove/grid-element__remove.css);
 @import url(../blocks/grid-element/__img/grid-element__img.css);
 @import url(../blocks/grid-element/__title/grid-element__title.css);
 @import url(../blocks/grid-element/__sign/grid-element__sign.css);
@@ -40,3 +41,9 @@
 @import url(../blocks/pop-up/__form/pop-up__form.css);
 @import url(../blocks/pop-up/__input/pop-up__input.css);
 @import url(../blocks/pop-up/__submit/pop-up__submit.css);
+
+@import url(../blocks/pop-up-image/pop-up-image.css);
+@import url(../blocks/pop-up-image/__content/pop-up-image__content.css);
+@import url(../blocks/pop-up-image/__cross/pop-up-image__cross.css);
+@import url(../blocks/pop-up-image/__src/pop-up-image__src.css);
+@import url(../blocks/pop-up-image/__name/pop-up-image__name.css);
