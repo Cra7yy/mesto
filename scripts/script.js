@@ -10,7 +10,7 @@ const popupImage = document.querySelector('.popup_image')
 const popupImageSrc = document.querySelector('.popup-image__src')
 const popupImageName = document.querySelector('.popup-image__name')
 
-const popupProfile = document.querySelector('.poup_profile')
+const popupProfile = document.querySelector('.popup_profile')
 const popupFormTypeProfile = document.querySelector('.popup__form_type_profile')
 const popupInputValueName = document.querySelector('.popup__input_value_name')
 const popupInputValueSign = document.querySelector('.popup__input_value_sign')
