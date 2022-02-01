@@ -6,21 +6,23 @@ const profileSubtitle = document.querySelector('.profile__subtitle')
 const gridTemplate = document.querySelector('#grid-content').content
 const gridConteiner = document.querySelector('.grid-conteiner')
 
-const popupImage = document.querySelector('.pop-up_image')
-const popupImageSrc = document.querySelector('.pop-up-image__src')
-const popupImageName = document.querySelector('.pop-up-image__name')
+const popupImage = document.querySelector('.popup_image')
+const popupImageSrc = document.querySelector('.popup-image__src')
+const popupImageName = document.querySelector('.popup-image__name')
 
-const popupProfile = document.querySelector('.po-up_profile')
-const popupFormTypeProfile = document.querySelector('.pop-up__form_type_profile')
-const popupInputValueName = document.querySelector('.pop-up__input_value_name')
-const popupInputValueSign = document.querySelector('.pop-up__input_value_sign')
+const popupProfile = document.querySelector('.poup_profile')
+const popupFormTypeProfile = document.querySelector('.popup__form_type_profile')
+const popupInputValueName = document.querySelector('.popup__input_value_name')
+const popupInputValueSign = document.querySelector('.popup__input_value_sign')
 
-const popupMesto = document.querySelector('.pop-up_mesto')
-const popupFormTypeMesto = document.querySelector('.pop-up__form_type_mesto')
-const popupInputValueMesto = document.querySelector('.pop-up__input_value_mesto')
-const popupInputValueSrc = document.querySelector('.pop-up__input_value_src')
+const popupMesto = document.querySelector('.popup_mesto')
+const popupFormTypeMesto = document.querySelector('.popup__form_type_mesto')
+const popupInputValueMesto = document.querySelector('.popup__input_value_mesto')
+const popupInputValueSrc = document.querySelector('.popup__input_value_src')
 
-const popupCross = document.querySelectorAll('.pop-up__cross')
+const popupCross = document.querySelectorAll('.popup__cross')
+
+const form = document.querySelectorAll('.popup__form')
 
 const initialCards = [{
     name: 'Золотые Ворота',
@@ -93,8 +95,7 @@ const clickLike = (event) => {
 }
 
 const popupOpen = (el) => {
-  el.classList.add('pop-up_opened')
-  clickPopupClosed()
+  el.classList.add('popup_opened')
 }
 
 const clickPopupClosed = () => {
@@ -104,7 +105,7 @@ const clickPopupClosed = () => {
 }
 
 const popupClosed = (event) => {
-  event.target.closest('.pop-up').classList.remove('pop-up_opened')
+  event.target.closest('.popup').classList.remove('popup_opened')
 }
 
 const openPopupImage = (event) => {
@@ -115,34 +116,31 @@ const openPopupImage = (event) => {
   popupOpen(popupImage)
 }
 
-// функция переноса текстовых данных из profile в попап
 const transferTextContentPopup = () => {
   popupInputValueName.value = profileTitle.textContent
   popupInputValueSign.value = profileSubtitle.textContent
 }
 
-// функция переноса текстовых данных из попапа в profile
 const transferTextContentProfile = () => {
   profileTitle.textContent = popupInputValueName.value
   profileSubtitle.textContent = popupInputValueSign.value
 }
 
-const formClosed = (form) => {
-  form.closest('.pop-up').classList.remove('pop-up_opened')
+const formClosed = (el) => {
+  el.closest('.popup').classList.remove('popup_opened')
 }
 
 const savePopupForm = (form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault()
     transferTextContentProfile()
-    formClosed(form)
+    formClosed(popupFormTypeProfile)
   })
 }
 
 const clickOpenPopupProfile = () => {
   popupOpen(popupProfile)
   transferTextContentPopup()
-  savePopupForm(popupFormTypeProfile)
 }
 
 const transferContentMesto = () => {
@@ -162,22 +160,22 @@ const clearingForm = () => {
   popupInputValueSrc.value = ''
 }
 
-const savePopupMesto = (form) => {
-  form.addEventListener('submit', (event) => {
+const savePopupMesto = (date) => {
+  date.addEventListener('submit', (event) => {
     event.preventDefault()
     transferContentMesto()
-    formClosed(form)
     clearingForm()
+    formClosed(popupFormTypeMesto)
   })
 }
 
 const clickOpenPopupMesto = () => {
-  savePopupMesto(popupFormTypeMesto)
   popupOpen(popupMesto)
 }
-// функция открытия попапа profile
-profileEditor.addEventListener('click', clickOpenPopupProfile)
-// функция открытия попапа mesto
-profileMesto.addEventListener('click', clickOpenPopupMesto)
 
+savePopupMesto(popupFormTypeMesto)
+savePopupForm(popupFormTypeProfile)
+clickPopupClosed()
+profileEditor.addEventListener('click', clickOpenPopupProfile)
+profileMesto.addEventListener('click', clickOpenPopupMesto)
 render(initialCards)

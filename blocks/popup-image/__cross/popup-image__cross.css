@@ -1,10 +1,10 @@
-.pop-up-image__cross {
+.popup-image__cross {
   top: -40px;
   right: -40px;
 }
 
 @media screen and (max-width: 645px) {
-  .pop-up-image__cross {
+  .popup-image__cross {
     right: 0;
     top: -37px;
   }
