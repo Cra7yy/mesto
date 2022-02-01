@@ -6,16 +6,16 @@ const profileSubtitle = document.querySelector('.profile__subtitle')
 const gridTemplate = document.querySelector('#grid-content').content
 const gridConteiner = document.querySelector('.grid-conteiner')
 
-const popupTypeImage = document.querySelector('.pop-up_type_image')
+const popupImage = document.querySelector('.pop-up_image')
 const popupImageSrc = document.querySelector('.pop-up-image__src')
 const popupImageName = document.querySelector('.pop-up-image__name')
 
-const popupTypeProfile = document.querySelector('.po-up_type_profile')
+const popupProfile = document.querySelector('.po-up_profile')
 const popupFormTypeProfile = document.querySelector('.pop-up__form_type_profile')
 const popupInputValueName = document.querySelector('.pop-up__input_value_name')
 const popupInputValueSign = document.querySelector('.pop-up__input_value_sign')
 
-const popupTypeMesto = document.querySelector('.pop-up_type_mesto')
+const popupMesto = document.querySelector('.pop-up_mesto')
 const popupFormTypeMesto = document.querySelector('.pop-up__form_type_mesto')
 const popupInputValueMesto = document.querySelector('.pop-up__input_value_mesto')
 const popupInputValueSrc = document.querySelector('.pop-up__input_value_src')
@@ -112,7 +112,7 @@ const openPopupImage = (event) => {
   popupImageSrc.alt = event.target.alt
   popupImageName.textContent = event.target.alt
 
-  popupOpen(popupTypeImage)
+  popupOpen(popupImage)
 }
 
 // функция переноса текстовых данных из profile в попап
@@ -140,7 +140,7 @@ const savePopupForm = (form) => {
 }
 
 const clickOpenPopupProfile = () => {
-  popupOpen(popupTypeProfile)
+  popupOpen(popupProfile)
   transferTextContentPopup()
   savePopupForm(popupFormTypeProfile)
 }
@@ -173,7 +173,7 @@ const savePopupMesto = (form) => {
 
 const clickOpenPopupMesto = () => {
   savePopupMesto(popupFormTypeMesto)
-  popupOpen(popupTypeMesto)
+  popupOpen(popupMesto)
 }
 // функция открытия попапа profile
 profileEditor.addEventListener('click', clickOpenPopupProfile)
