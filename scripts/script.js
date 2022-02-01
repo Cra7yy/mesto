@@ -1,14 +1,26 @@
-let page = document.querySelector('.page')
-let profileEditor = document.querySelector('.profile__editor')
-let profileTitle = document.querySelector('.profile__title')
-let profileSubtitle = document.querySelector('.profile__subtitle')
-let gridConteiner = document.querySelector('.grid-conteiner')
-let profileMesto = document.querySelector('.profile__mesto')
-let gridTemplate = document.querySelector('#grid-content').content
-let popupImgTemplate = document.querySelector('#pop-up-img').content
-let popupProfileTemplate = document.querySelector('#popup-profile').content
-let popupMestoId = document.querySelector('#popup-mesto').content
-let gridElement = document.querySelectorAll('.grid-element')
+const profileEditor = document.querySelector('.profile__editor')
+const profileMesto = document.querySelector('.profile__mesto')
+const profileTitle = document.querySelector('.profile__title')
+const profileSubtitle = document.querySelector('.profile__subtitle')
+
+const gridTemplate = document.querySelector('#grid-content').content
+const gridConteiner = document.querySelector('.grid-conteiner')
+
+const popupTypeImage = document.querySelector('.pop-up_type_image')
+const popupImageSrc = document.querySelector('.pop-up-image__src')
+const popupImageName = document.querySelector('.pop-up-image__name')
+
+const popupTypeProfile = document.querySelector('.po-up_type_profile')
+const popupFormTypeProfile = document.querySelector('.pop-up__form_type_profile')
+const popupInputValueName = document.querySelector('.pop-up__input_value_name')
+const popupInputValueSign = document.querySelector('.pop-up__input_value_sign')
+
+const popupTypeMesto = document.querySelector('.pop-up_type_mesto')
+const popupFormTypeMesto = document.querySelector('.pop-up__form_type_mesto')
+const popupInputValueMesto = document.querySelector('.pop-up__input_value_mesto')
+const popupInputValueSrc = document.querySelector('.pop-up__input_value_src')
+
+const popupCross = document.querySelectorAll('.pop-up__cross')
 
 const initialCards = [{
     name: 'Золотые Ворота',
@@ -49,17 +61,21 @@ const initialCards = [{
 ];
 
 const render = (initialCards) => {
-  initialCards.map(renderCards)
+  initialCards.forEach(renderCards)
+}
+
+const additionCards = (card) => {
+  gridConteiner.prepend(card)
 }
 
 const renderCards = (card) => {
-  let gridContent = gridTemplate.cloneNode(true)
+  const gridContent = gridTemplate.cloneNode(true)
   gridContent.querySelector('.grid-element__title').textContent = card.name
   gridContent.querySelector('.grid-element__img').src = card.link
   gridContent.querySelector('.grid-element__img').alt = card.name
 
   clickElement(gridContent)
-  gridConteiner.prepend(gridContent)
+  additionCards(gridContent)
 }
 
 const clickElement = (el) => {
@@ -78,86 +94,86 @@ const clickLike = (event) => {
 
 const popupOpen = (el) => {
   el.classList.add('pop-up_opened')
-  page.append(el)
   clickPopupClosed()
 }
 
-const clickPopupClosed = () =>{
-document.querySelector('.pop-up__cross').addEventListener('click',popupClosed)
+const clickPopupClosed = () => {
+  popupCross.forEach((el) => {
+    el.addEventListener('click', popupClosed)
+  })
 }
 
-const popupClosed = () => {
-  document.querySelector('.pop-up').remove('pop-up_opened')
+const popupClosed = (event) => {
+  event.target.closest('.pop-up').classList.remove('pop-up_opened')
 }
 
 const openPopupImage = (event) => {
-  let popupImage = popupImgTemplate.cloneNode(true)
-  let popup = popupImage.querySelector('.pop-up-image')
+  popupImageSrc.src = event.target.src
+  popupImageSrc.alt = event.target.alt
+  popupImageName.textContent = event.target.alt
 
-  popupImage.querySelector('.pop-up-image__src').src = event.target.src
-  popupImage.querySelector('.pop-up-image__src').alt = event.target.alt
-  popupImage.querySelector('.pop-up-image__name').textContent = event.target.alt
-
-  popupOpen(popup)
+  popupOpen(popupTypeImage)
 }
 
 // функция переноса текстовых данных из profile в попап
 const transferTextContentPopup = () => {
-  document.querySelector('.pop-up__input_value_name').value = profileTitle.textContent
-  document.querySelector('.pop-up__input_value_sign').value = profileSubtitle.textContent
+  popupInputValueName.value = profileTitle.textContent
+  popupInputValueSign.value = profileSubtitle.textContent
 }
 
-  // функция переноса текстовых данных из попапа в profile
-  const transferTextContentProfile = () => {
-    profileTitle.textContent = document.querySelector('.pop-up__input_value_name').value
-    profileSubtitle.textContent = document.querySelector('.pop-up__input_value_sign').value
-  }
+// функция переноса текстовых данных из попапа в profile
+const transferTextContentProfile = () => {
+  profileTitle.textContent = popupInputValueName.value
+  profileSubtitle.textContent = popupInputValueSign.value
+}
 
-  const savePopupForm = (form) => {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault()
-      transferTextContentProfile()
-      popupClosed()
-    })
-  }
+const formClosed = (form) => {
+  form.closest('.pop-up').classList.remove('pop-up_opened')
+}
+
+const savePopupForm = (form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    transferTextContentProfile()
+    formClosed(form)
+  })
+}
 
 const clickOpenPopupProfile = () => {
-  let popupClone = popupProfileTemplate.cloneNode(true)
-  let popup = popupClone.querySelector('.pop-up')
-  let popupForm = popupClone.querySelector('.pop-up__form')
-
-  popupOpen(popup)
+  popupOpen(popupTypeProfile)
   transferTextContentPopup()
-  savePopupForm(popupForm)
+  savePopupForm(popupFormTypeProfile)
 }
 
 const transferContentMesto = () => {
-  let arrMesto = [{
+  const arrMesto = {
     name: '',
     link: ''
-  }]
+  }
 
-  arrMesto.name = document.querySelector('.pop-up__input_value_mesto').value
-  arrMesto.link = document.querySelector('.pop-up__input_value_src').value
+  arrMesto.name = popupInputValueMesto.value
+  arrMesto.link = popupInputValueSrc.value
 
   renderCards(arrMesto)
+}
+
+const clearingForm = () => {
+  popupInputValueMesto.value = ''
+  popupInputValueSrc.value = ''
 }
 
 const savePopupMesto = (form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault()
     transferContentMesto()
-    popupClosed()
+    formClosed(form)
+    clearingForm()
   })
 }
 
 const clickOpenPopupMesto = () => {
-  let popupMestoTemplate = popupMestoId.cloneNode(true)
-  let popupMesto = popupMestoTemplate.querySelector('.pop-up-mesto')
-  let formMesto = popupMesto.querySelector('.pop-up-mesto__form')
-
-  savePopupMesto(formMesto)
-  popupOpen(popupMesto)
+  savePopupMesto(popupFormTypeMesto)
+  popupOpen(popupTypeMesto)
 }
 // функция открытия попапа profile
 profileEditor.addEventListener('click', clickOpenPopupProfile)
@@ -165,13 +181,3 @@ profileEditor.addEventListener('click', clickOpenPopupProfile)
 profileMesto.addEventListener('click', clickOpenPopupMesto)
 
 render(initialCards)
-
-
-
-
-
-
-
-
-
-
