@@ -6,23 +6,22 @@ const profileSubtitle = document.querySelector('.profile__subtitle')
 const gridTemplate = document.querySelector('#grid-content').content
 const gridConteiner = document.querySelector('.grid-conteiner')
 
-const popupImage = document.querySelector('.popup_image')
-const popupImageSrc = document.querySelector('.popup-image__src')
-const popupImageName = document.querySelector('.popup-image__name')
+const popupTypeImage = document.querySelector('.popup_type_image')
+const popupImageSrc = popupTypeImage.querySelector('.popup-image__src')
+const popupImageName = popupTypeImage.querySelector('.popup-image__name')
 
-const popupProfile = document.querySelector('.popup_profile')
-const popupFormTypeProfile = document.querySelector('.popup__form_type_profile')
-const popupInputValueName = document.querySelector('.popup__input_value_name')
-const popupInputValueSign = document.querySelector('.popup__input_value_sign')
+const popupTypeProfile = document.querySelector('.popup_type_profile')
+const popupFormTypeProfile = popupTypeProfile.querySelector('.popup__form_type_profile')
+const popupInputValueName = popupTypeProfile.querySelector('.popup__input_value_name')
+const popupInputValueSign = popupTypeProfile.querySelector('.popup__input_value_sign')
 
-const popupMesto = document.querySelector('.popup_mesto')
-const popupFormTypeMesto = document.querySelector('.popup__form_type_mesto')
-const popupInputValueMesto = document.querySelector('.popup__input_value_mesto')
-const popupInputValueSrc = document.querySelector('.popup__input_value_src')
+const popupTypeMesto = document.querySelector('.popup_type_mesto')
+const popupFormTypeMesto = popupTypeMesto.querySelector('.popup__form_type_mesto')
+const popupInputValueMesto = popupTypeMesto.querySelector('.popup__input_value_mesto')
+const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src')
 
-const popupCross = document.querySelectorAll('.popup__cross')
+const popupCrosses = document.querySelectorAll('.popup__cross')
 
-const form = document.querySelectorAll('.popup__form')
 
 const initialCards = [{
     name: 'Золотые Ворота',
@@ -63,12 +62,13 @@ const initialCards = [{
 ];
 
 const render = (initialCards) => {
-  initialCards.forEach(renderCards)
+  initialCards.forEach(additionCards)
 }
 
 const additionCards = (card) => {
-  gridConteiner.prepend(card)
+  gridConteiner.prepend(renderCards(card))
 }
+
 
 const renderCards = (card) => {
   const gridContent = gridTemplate.cloneNode(true)
@@ -77,7 +77,7 @@ const renderCards = (card) => {
   gridContent.querySelector('.grid-element__img').alt = card.name
 
   clickElement(gridContent)
-  additionCards(gridContent)
+  return gridContent
 }
 
 const clickElement = (el) => {
@@ -99,7 +99,7 @@ const popupOpen = (el) => {
 }
 
 const clickPopupClosed = () => {
-  popupCross.forEach((el) => {
+  popupCrosses.forEach((el) => {
     el.addEventListener('click', popupClosed)
   })
 }
@@ -113,7 +113,7 @@ const openPopupImage = (event) => {
   popupImageSrc.alt = event.target.alt
   popupImageName.textContent = event.target.alt
 
-  popupOpen(popupImage)
+  popupOpen(popupTypeImage)
 }
 
 const transferTextContentPopup = () => {
@@ -126,21 +126,17 @@ const transferTextContentProfile = () => {
   profileSubtitle.textContent = popupInputValueSign.value
 }
 
-const formClosed = (el) => {
-  el.closest('.popup').classList.remove('popup_opened')
-}
-
 const savePopupForm = (form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault()
     transferTextContentProfile()
-    formClosed(popupFormTypeProfile)
+    popupClosed(event)
   })
 }
 
 const clickOpenPopupProfile = () => {
-  popupOpen(popupProfile)
   transferTextContentPopup()
+  popupOpen(popupTypeProfile)
 }
 
 const transferContentMesto = () => {
@@ -152,7 +148,7 @@ const transferContentMesto = () => {
   arrMesto.name = popupInputValueMesto.value
   arrMesto.link = popupInputValueSrc.value
 
-  renderCards(arrMesto)
+  additionCards(arrMesto)
 }
 
 const clearingForm = () => {
@@ -165,12 +161,12 @@ const savePopupMesto = (date) => {
     event.preventDefault()
     transferContentMesto()
     clearingForm()
-    formClosed(popupFormTypeMesto)
+    popupClosed(event)
   })
 }
 
 const clickOpenPopupMesto = () => {
-  popupOpen(popupMesto)
+  popupOpen(popupTypeMesto)
 }
 
 savePopupMesto(popupFormTypeMesto)
@@ -179,3 +175,4 @@ clickPopupClosed()
 profileEditor.addEventListener('click', clickOpenPopupProfile)
 profileMesto.addEventListener('click', clickOpenPopupMesto)
 render(initialCards)
+
