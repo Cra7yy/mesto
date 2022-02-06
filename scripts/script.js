@@ -22,6 +22,9 @@ const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src
 
 const popupCrosses = document.querySelectorAll('.popup__cross')
 
+const popup = document.querySelectorAll('.popup')
+
+
 
 const initialCards = [{
     name: 'Золотые Ворота',
@@ -95,17 +98,19 @@ const clickLike = (event) => {
 }
 
 const popupOpen = (el) => {
+  enableValidation()
   el.classList.add('popup_opened')
+
 }
 
-const clickPopupClosed = () => {
+const clickCrossPopupClosed = () => {
   popupCrosses.forEach((el) => {
     el.addEventListener('click', popupClosed)
   })
 }
 
-const popupClosed = (event) => {
-  event.target.closest('.popup').classList.remove('popup_opened')
+const popupClosed = () => {
+  document.querySelector('.popup_opened').classList.remove('popup_opened')
 }
 
 const openPopupImage = (event) => {
@@ -130,7 +135,7 @@ const savePopupForm = (form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault()
     transferTextContentProfile()
-    popupClosed(event)
+    popupClosed()
   })
 }
 
@@ -161,7 +166,7 @@ const savePopupMesto = (date) => {
     event.preventDefault()
     transferContentMesto()
     clearingForm()
-    popupClosed(event)
+    popupClosed()
   })
 }
 
@@ -169,10 +174,45 @@ const clickOpenPopupMesto = () => {
   popupOpen(popupTypeMesto)
 }
 
+const overlayClosedPopup = (event) => {
+  let arr = Array.from(event.target.classList)
+  if (arr.find(el => el === 'popup_opened')) {
+    popupClosed()
+  }
+}
+
+const clickOverlayClosedPopup = () => {
+  popup.forEach((el) => {
+    el.addEventListener('click', overlayClosedPopup)
+  })
+}
+
+const keydownClosedPopup = () => {
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      popupClosed()
+    }
+  })
+}
+
+keydownClosedPopup()
+clickOverlayClosedPopup()
 savePopupMesto(popupFormTypeMesto)
 savePopupForm(popupFormTypeProfile)
-clickPopupClosed()
+clickCrossPopupClosed()
 profileEditor.addEventListener('click', clickOpenPopupProfile)
 profileMesto.addEventListener('click', clickOpenPopupMesto)
 render(initialCards)
+
+
+
+
+
+
+
+
+
+
+// const popupInput = popupFormTypeProfile.querySelector('.popup__input')
+// const formError = popupFormTypeProfile.querySelector(`.${popupInput.id}-error`)
 
