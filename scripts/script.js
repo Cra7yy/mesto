@@ -100,7 +100,6 @@ const openPopup = (popup) => {
   repeatСheck()
   document.addEventListener('keydown', keydownClosedPopup)
   popup.classList.add('popup_opened')
-
 }
 
 const clickCrossPopupClosed = () => {
@@ -162,7 +161,7 @@ const resetForm = () => {
 const savePopupFormMesto = (event) => {
   event.preventDefault()
   transferContentMesto()
-  resetForm() //! обрати внимание надо будет перенести а возможно и нет
+  resetForm()
   closePopup(popupTypeMesto)
 }
 
