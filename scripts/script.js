@@ -22,7 +22,7 @@ const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src
 
 const popupCrosses = document.querySelectorAll('.popup__cross')
 
-const popup = document.querySelectorAll('.popup')
+const popups = document.querySelectorAll('.popup')
 
 
 
@@ -64,29 +64,28 @@ const initialCards = [{
   }
 ];
 
-const render = (initialCards) => {
+const renderInitialCards = (initialCards) => {
   initialCards.forEach(additionCards)
 }
 
 const additionCards = (card) => {
-  gridConteiner.prepend(renderCards(card))
+  gridConteiner.prepend(createCard(card))
 }
 
-
-const renderCards = (card) => {
+const createCard = (card) => {
   const gridContent = gridTemplate.cloneNode(true)
   gridContent.querySelector('.grid-element__title').textContent = card.name
   gridContent.querySelector('.grid-element__img').src = card.link
   gridContent.querySelector('.grid-element__img').alt = card.name
 
-  clickElement(gridContent)
+  addEventListeners(gridContent, card)
   return gridContent
 }
 
-const clickElement = (el) => {
-  el.querySelector('.grid-element__like').addEventListener('click', clickLike)
-  el.querySelector('.grid-element__remove').addEventListener('click', clickRemove)
-  el.querySelector('.grid-element__img').addEventListener('click', openPopupImage)
+const addEventListeners = (element, card) => {
+  element.querySelector('.grid-element__like').addEventListener('click', clickLike)
+  element.querySelector('.grid-element__remove').addEventListener('click', clickRemove)
+  element.querySelector('.grid-element__img').addEventListener('click', () => openPopupImage(card))
 }
 
 const clickRemove = (event) => {
@@ -97,28 +96,33 @@ const clickLike = (event) => {
   event.target.classList.toggle('grid-element__like_action')
 }
 
-const popupOpen = (el) => {
-  enableValidation()
-  el.classList.add('popup_opened')
+const openPopup = (popup) => {
+  repeatСheck()
+  document.addEventListener('keydown', keydownClosedPopup)
+  popup.classList.add('popup_opened')
 
 }
 
 const clickCrossPopupClosed = () => {
   popupCrosses.forEach((el) => {
-    el.addEventListener('click', popupClosed)
+    el.addEventListener('click', () => {
+      const popupOpened = el.closest('.popup_opened')
+      closePopup(popupOpened)
+    } )
   })
 }
 
-const popupClosed = () => {
-  document.querySelector('.popup_opened').classList.remove('popup_opened')
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keydownClosedPopup)
 }
 
-const openPopupImage = (event) => {
-  popupImageSrc.src = event.target.src
-  popupImageSrc.alt = event.target.alt
-  popupImageName.textContent = event.target.alt
+const openPopupImage = (card) => {
+  popupImageSrc.src = card.link
+  popupImageSrc.alt = card.name
+  popupImageName.textContent = card.name
 
-  popupOpen(popupTypeImage)
+  openPopup(popupTypeImage)
 }
 
 const transferTextContentPopup = () => {
@@ -131,78 +135,69 @@ const transferTextContentProfile = () => {
   profileSubtitle.textContent = popupInputValueSign.value
 }
 
-const savePopupForm = (form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault()
-    transferTextContentProfile()
-    popupClosed()
-  })
+const savePopupFormProfile = (event) => {
+  event.preventDefault()
+  transferTextContentProfile()
+  closePopup(popupTypeProfile)
 }
 
 const clickOpenPopupProfile = () => {
   transferTextContentPopup()
-  popupOpen(popupTypeProfile)
+  openPopup(popupTypeProfile)
 }
 
 const transferContentMesto = () => {
-  const arrMesto = {
-    name: '',
-    link: ''
+  const newCard = {
+    name: popupInputValueMesto.value,
+    link: popupInputValueSrc.value
   }
 
-  arrMesto.name = popupInputValueMesto.value
-  arrMesto.link = popupInputValueSrc.value
-
-  additionCards(arrMesto)
+  additionCards(newCard)
 }
 
-const clearingForm = () => {
-  popupInputValueMesto.value = ''
-  popupInputValueSrc.value = ''
+const resetForm = () => {
+  popupFormTypeMesto.reset()
 }
 
-const savePopupMesto = (date) => {
-  date.addEventListener('submit', (event) => {
-    event.preventDefault()
-    transferContentMesto()
-    clearingForm()
-    popupClosed()
-  })
+const savePopupFormMesto = (event) => {
+  event.preventDefault()
+  transferContentMesto()
+  resetForm() //! обрати внимание надо будет перенести а возможно и нет
+  closePopup(popupTypeMesto)
 }
 
 const clickOpenPopupMesto = () => {
-  popupOpen(popupTypeMesto)
+  openPopup(popupTypeMesto)
 }
 
 const overlayClosedPopup = (event) => {
-  let arr = Array.from(event.target.classList)
-  if (arr.find(el => el === 'popup_opened')) {
-    popupClosed()
+  const popupOpen = document.querySelector('.popup_opened')
+  if (event.target.classList.contains('popup_opened')) {
+    closePopup(popupOpen)
   }
 }
 
 const clickOverlayClosedPopup = () => {
-  popup.forEach((el) => {
+  popups.forEach((el) => {
     el.addEventListener('click', overlayClosedPopup)
   })
 }
 
-const keydownClosedPopup = () => {
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      popupClosed()
-    }
-  })
+const keydownClosedPopup = (event) => {
+  if (event.key === 'Escape') {
+    const popupOpen = document.querySelector('.popup_opened')
+    closePopup(popupOpen)
+  }
 }
 
-keydownClosedPopup()
+
 clickOverlayClosedPopup()
-savePopupMesto(popupFormTypeMesto)
-savePopupForm(popupFormTypeProfile)
+popupFormTypeMesto.addEventListener('submit', savePopupFormMesto)
+popupFormTypeProfile.addEventListener('submit', savePopupFormProfile)
 clickCrossPopupClosed()
 profileEditor.addEventListener('click', clickOpenPopupProfile)
 profileMesto.addEventListener('click', clickOpenPopupMesto)
-render(initialCards)
+renderInitialCards(initialCards)
 
 
 
@@ -213,6 +208,4 @@ render(initialCards)
 
 
 
-// const popupInput = popupFormTypeProfile.querySelector('.popup__input')
-// const formError = popupFormTypeProfile.querySelector(`.${popupInput.id}-error`)
 
