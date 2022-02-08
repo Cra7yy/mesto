@@ -29,7 +29,6 @@ const setEventListeners = (popupForm, value) => {
   toggleButttonState(inputList, buttonElement, value)
 
   inputList.forEach((el) => {
-    isValid(popupForm, el, value)
     el.addEventListener('input', () => {
       isValid(popupForm, el, value)
       toggleButttonState(inputList, buttonElement, value)
@@ -41,7 +40,7 @@ const enableValidation = (value) => {
   const formList = Array.from(document.querySelectorAll(value.popupForm))
 
   formList.forEach((el) => {
-    setEventListeners(el,value)
+    setEventListeners(el, value)
   })
 }
 
@@ -54,21 +53,27 @@ const hasInvalidInput = (inputList) => {
 const toggleButttonState = (inputList, buttonElement, value) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(value.popupSubmitAction)
-    buttonElement.setAttribute('disabled', 'disabled')
+    buttonElement.setAttribute('disabled', true)
   } else {
     buttonElement.classList.remove(value.popupSubmitAction)
     buttonElement.removeAttribute('disabled')
   }
 }
-const repeatСheck = () => {
-  enableValidation({
-    popupSubmitAction: 'popup__submit_action',
-    popupForm: '.popup__form',
-    popupSubmit: '.popup__submit',
-    popupInput: '.popup__input',
-    popupInputErrorAction: 'popup__input-error_action',
-    popupInputTypeError: 'popup__input_type_error'
-  })
-}
 
-repeatСheck()
+enableValidation({
+  popupSubmitAction: 'popup__submit_action',
+  popupForm: '.popup__form',
+  popupSubmit: '.popup__submit',
+  popupInput: '.popup__input',
+  popupInputErrorAction: 'popup__input-error_action',
+  popupInputTypeError: 'popup__input_type_error'
+})
+
+
+
+
+
+
+
+
+

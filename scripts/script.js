@@ -25,7 +25,6 @@ const popupCrosses = document.querySelectorAll('.popup__cross')
 const popups = document.querySelectorAll('.popup')
 
 
-
 const initialCards = [{
     name: 'Золотые Ворота',
     link: 'https://images.unsplash.com/photo-1643142032527-59075c185fc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
@@ -97,7 +96,6 @@ const clickLike = (event) => {
 }
 
 const openPopup = (popup) => {
-  repeatСheck()
   document.addEventListener('keydown', keydownClosedPopup)
   popup.classList.add('popup_opened')
 }
@@ -142,7 +140,14 @@ const savePopupFormProfile = (event) => {
 
 const clickOpenPopupProfile = () => {
   transferTextContentPopup()
+  buttonActivation()
   openPopup(popupTypeProfile)
+}
+
+const buttonActivation = () => {
+  const button = document.querySelector('.popup__submit')
+  button.classList.remove('popup__submit_action')
+  document.querySelector('.popup__submit').removeAttribute('disabled')
 }
 
 const transferContentMesto = () => {
@@ -188,7 +193,6 @@ const keydownClosedPopup = (event) => {
     closePopup(popupOpen)
   }
 }
-
 
 clickOverlayClosedPopup()
 popupFormTypeMesto.addEventListener('submit', savePopupFormMesto)
