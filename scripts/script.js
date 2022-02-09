@@ -14,6 +14,8 @@ const popupTypeProfile = document.querySelector('.popup_type_profile')
 const popupFormTypeProfile = popupTypeProfile.querySelector('.popup__form_type_profile')
 const popupInputValueName = popupTypeProfile.querySelector('.popup__input_value_name')
 const popupInputValueSign = popupTypeProfile.querySelector('.popup__input_value_sign')
+const nameInputError = document.querySelector('.name-input-error')
+const signInputError = document.querySelector('.sign-input-error')
 
 const popupTypeMesto = document.querySelector('.popup_type_mesto')
 const popupFormTypeMesto = popupTypeMesto.querySelector('.popup__form_type_mesto')
@@ -21,9 +23,7 @@ const popupInputValueMesto = popupTypeMesto.querySelector('.popup__input_value_m
 const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src')
 
 const popupCrosses = document.querySelectorAll('.popup__cross')
-
 const popups = document.querySelectorAll('.popup')
-
 
 const initialCards = [{
     name: 'Золотые Ворота',
@@ -140,14 +140,22 @@ const savePopupFormProfile = (event) => {
 
 const clickOpenPopupProfile = () => {
   transferTextContentPopup()
-  buttonActivation()
+  enableSubmitButton()
+  disableProfileInputError()
   openPopup(popupTypeProfile)
 }
 
-const buttonActivation = () => {
+const enableSubmitButton = () => {
   const button = document.querySelector('.popup__submit')
   button.classList.remove('popup__submit_action')
-  document.querySelector('.popup__submit').removeAttribute('disabled')
+  button.removeAttribute('disabled')
+}
+
+const disableProfileInputError = () => {
+  popupInputValueName.classList.remove('popup__input_type_error')
+  nameInputError.classList.remove('popup__input-error_action')
+  popupInputValueSign.classList.remove('popup__input_type_error')
+  signInputError.classList.remove('popup__input-error_action')
 }
 
 const transferContentMesto = () => {
@@ -167,7 +175,14 @@ const savePopupFormMesto = (event) => {
   event.preventDefault()
   transferContentMesto()
   resetForm()
+  disableSubmitButton(event)
   closePopup(popupTypeMesto)
+}
+
+const disableSubmitButton = (event) => {
+  const button = event.target.querySelector('.popup__submit')
+  button.classList.add('popup__submit_action')
+  button.setAttribute('disabled', true)
 }
 
 const clickOpenPopupMesto = () => {
