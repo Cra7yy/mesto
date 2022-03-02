@@ -1,29 +1,5 @@
-const profileEditor = document.querySelector('.profile__editor')
-const profileMesto = document.querySelector('.profile__mesto')
-const profileTitle = document.querySelector('.profile__title')
-const profileSubtitle = document.querySelector('.profile__subtitle')
-
-const gridTemplate = document.querySelector('#grid-content').content
-const gridConteiner = document.querySelector('.grid-conteiner')
-
-const popupTypeImage = document.querySelector('.popup_type_image')
-const popupImageSrc = popupTypeImage.querySelector('.popup-image__src')
-const popupImageName = popupTypeImage.querySelector('.popup-image__name')
-
-const popupTypeProfile = document.querySelector('.popup_type_profile')
-const popupFormTypeProfile = popupTypeProfile.querySelector('.popup__form_type_profile')
-const popupInputValueName = popupTypeProfile.querySelector('.popup__input_value_name')
-const popupInputValueSign = popupTypeProfile.querySelector('.popup__input_value_sign')
-const nameInputError = document.querySelector('.name-input-error')
-const signInputError = document.querySelector('.sign-input-error')
-
-const popupTypeMesto = document.querySelector('.popup_type_mesto')
-const popupFormTypeMesto = popupTypeMesto.querySelector('.popup__form_type_mesto')
-const popupInputValueMesto = popupTypeMesto.querySelector('.popup__input_value_mesto')
-const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src')
-
-const popupCrosses = document.querySelectorAll('.popup__cross')
-const popups = document.querySelectorAll('.popup')
+import Card from './Card.js'
+import FormValidator from './FormValidator.js';
 
 const initialCards = [{
     name: 'Золотые Ворота',
@@ -63,39 +39,39 @@ const initialCards = [{
   }
 ];
 
-const renderInitialCards = (initialCards) => {
-  initialCards.forEach(additionCards)
+const select = {
+  popupSubmitAction: 'popup__submit_action',
+  popupSubmit: '.popup__submit',
+  popupInput: '.popup__input',
+  popupInputErrorAction: 'popup__input-error_action',
+  popupInputTypeError: 'popup__input_type_error'
 }
 
-const additionCards = (card) => {
-  gridConteiner.prepend(createCard(card))
-}
+const profileEditor = document.querySelector('.profile__editor')
+const profileMesto = document.querySelector('.profile__mesto')
+const profileTitle = document.querySelector('.profile__title')
+const profileSubtitle = document.querySelector('.profile__subtitle')
 
-const createCard = (card) => {
-  const gridContent = gridTemplate.cloneNode(true)
-  gridContent.querySelector('.grid-element__title').textContent = card.name
-  gridContent.querySelector('.grid-element__img').src = card.link
-  gridContent.querySelector('.grid-element__img').alt = card.name
+const gridConteiner = document.querySelector('.grid-conteiner')
 
-  addEventListeners(gridContent, card)
-  return gridContent
-}
+const popupTypeProfile = document.querySelector('.popup_type_profile')
+const profileValidatorForm = new FormValidator(select, popupTypeProfile)
+const popupFormTypeProfile = popupTypeProfile.querySelector('.popup__form_type_profile')
+const popupInputValueName = popupTypeProfile.querySelector('.popup__input_value_name')
+const popupInputValueSign = popupTypeProfile.querySelector('.popup__input_value_sign')
+const nameInputError = document.querySelector('.name-input-error')
+const signInputError = document.querySelector('.sign-input-error')
 
-const addEventListeners = (element, card) => {
-  element.querySelector('.grid-element__like').addEventListener('click', clickLike)
-  element.querySelector('.grid-element__remove').addEventListener('click', clickRemove)
-  element.querySelector('.grid-element__img').addEventListener('click', () => openPopupImage(card))
-}
+const popupTypeMesto = document.querySelector('.popup_type_mesto')
+const mestoValidatorForm = new FormValidator(select, popupTypeMesto)
+const popupFormTypeMesto = popupTypeMesto.querySelector('.popup__form_type_mesto')
+const popupInputValueMesto = popupTypeMesto.querySelector('.popup__input_value_mesto')
+const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src')
 
-const clickRemove = (event) => {
-  event.target.closest('.grid-element').remove()
-}
+const popupCrosses = document.querySelectorAll('.popup__cross')
+const popups = document.querySelectorAll('.popup')
 
-const clickLike = (event) => {
-  event.target.classList.toggle('grid-element__like_action')
-}
-
-const openPopup = (popup) => {
+export const openPopup = (popup) => {
   document.addEventListener('keydown', keydownClosedPopup)
   popup.classList.add('popup_opened')
 }
@@ -105,21 +81,13 @@ const clickCrossPopupClosed = () => {
     el.addEventListener('click', () => {
       const popupOpened = el.closest('.popup_opened')
       closePopup(popupOpened)
-    } )
+    })
   })
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', keydownClosedPopup)
-}
-
-const openPopupImage = (card) => {
-  popupImageSrc.src = card.link
-  popupImageSrc.alt = card.name
-  popupImageName.textContent = card.name
-
-  openPopup(popupTypeImage)
 }
 
 const transferTextContentPopup = () => {
@@ -209,21 +177,22 @@ const keydownClosedPopup = (event) => {
   }
 }
 
+const additionCards = (item) => {
+  const card = new Card(item, '#grid-content')
+  const cardElement = card._createCard()
+  gridConteiner.prepend(cardElement)
+}
+
+initialCards.forEach((item) => {
+  additionCards(item)
+})
+
 clickOverlayClosedPopup()
 popupFormTypeMesto.addEventListener('submit', savePopupFormMesto)
 popupFormTypeProfile.addEventListener('submit', savePopupFormProfile)
 clickCrossPopupClosed()
 profileEditor.addEventListener('click', clickOpenPopupProfile)
 profileMesto.addEventListener('click', clickOpenPopupMesto)
-renderInitialCards(initialCards)
-
-
-
-
-
-
-
-
-
-
+profileValidatorForm.enableValidation()
+mestoValidatorForm.enableValidation()
 
