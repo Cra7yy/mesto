@@ -6,6 +6,8 @@ export default class FormValidator {
     this._popupInput = selector.popupInput
     this._popupInputErrorAction = selector.popupInputErrorAction
     this._popupInputTypeError = selector.popupInputTypeError
+    this._inputList = Array.from(this._popupForm.querySelectorAll(this._popupInput))
+    this._buttonElement = this._popupForm.querySelector(this._popupSubmit)
   }
 
   _showInputError(el, errorMessage) {
@@ -24,8 +26,13 @@ export default class FormValidator {
     errorElement.textContent = ''
   }
 
+  resetError() {
+    this._inputList.forEach(el => {
+      this._hidenInputError(el)
+    })
+  }
+
   _isValid(el) {
-    console.log(el.errorMessage)
     if (!el.validity.valid) {
       this._showInputError(el, el.validationMessage)
     } else {
@@ -34,23 +41,19 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    this._buttonElement = this._popupForm.querySelector(this._popupSubmit)
-
-    this._toggleButttonState(this._buttonElement)
+    this.disabledButttonState()
 
     this._inputList.forEach((el) => {
       el.addEventListener('input', () => {
         this._isValid(el)
-        this._toggleButttonState(this._buttonElement)
+        this._actionButttonState()
+        this.disabledButttonState()
       })
     })
   }
 
   enableValidation() {
-    this._inputList = Array.from(this._popupForm.querySelectorAll(this._popupInput))
-
     this._setEventListeners()
-    return this._inputList
   }
 
   _hasInvalidInput() {
@@ -59,13 +62,18 @@ export default class FormValidator {
     })
   }
 
-  _toggleButttonState(buttonElement) {
+  disabledButttonState() {
     if (this._hasInvalidInput()) {
-      buttonElement.classList.add(this._popupSubmitAction)
-      buttonElement.setAttribute('disabled', true)
-    } else {
-      buttonElement.classList.remove(this._popupSubmitAction)
-      buttonElement.removeAttribute('disabled')
+      this._buttonElement.classList.add(this._popupSubmitAction)
+      this._buttonElement.setAttribute('disabled', true)
     }
   }
+
+  _actionButttonState() {
+    if (!this._hasInvalidInput()) {
+      this._buttonElement.classList.remove(this._popupSubmitAction)
+      this._buttonElement.removeAttribute('disabled')
+    }
+  }
+
 }
