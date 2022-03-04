@@ -18,16 +18,16 @@ const profileSubtitle = document.querySelector('.profile__subtitle')
 const gridConteiner = document.querySelector('.grid-conteiner')
 
 const popupTypeProfile = document.querySelector('.popup_type_profile')
-const profileValidatorForm = new FormValidator(validationConfig, popupTypeProfile)
-const popupFormTypeProfile = popupTypeProfile.querySelector('.popup__form_type_profile')
-const popupInputValueName = popupTypeProfile.querySelector('.popup__input_value_name')
-const popupInputValueSign = popupTypeProfile.querySelector('.popup__input_value_sign')
+const profileValidatorForm = new FormValidator(validationConfig, '.popup_type_profile')
+const popupFormTypeProfile = document.querySelector('.popup__form_type_profile')
+const popupInputValueName = document.querySelector('.popup__input_value_name')
+const popupInputValueSign = document.querySelector('.popup__input_value_sign')
 
 const popupTypeMesto = document.querySelector('.popup_type_mesto')
-const mestoValidatorForm = new FormValidator(validationConfig, popupTypeMesto)
-const popupFormTypeMesto = popupTypeMesto.querySelector('.popup__form_type_mesto')
-const popupInputValueMesto = popupTypeMesto.querySelector('.popup__input_value_mesto')
-const popupInputValueSrc = popupTypeMesto.querySelector('.popup__input_value_src')
+const mestoValidatorForm = new FormValidator(validationConfig, '.popup_type_mesto')
+const popupFormTypeMesto = document.querySelector('.popup__form_type_mesto')
+const popupInputValueMesto = document.querySelector('.popup__input_value_mesto')
+const popupInputValueSrc = document.querySelector('.popup__input_value_src')
 
 export const popupTypeImage = document.querySelector('.popup_type_image')
 export const popupImageSrc = popupTypeImage.querySelector('.popup-image__src')
@@ -36,6 +36,7 @@ const popupCrosses = document.querySelectorAll('.popup__cross')
 const popups = document.querySelectorAll('.popup')
 
 export const openPopup = (popup) => {
+  console.log(popup)
   document.addEventListener('keydown', keydownClosedPopup)
   popup.classList.add('popup_opened')
 }
@@ -72,15 +73,9 @@ const savePopupFormProfile = (event) => {
 
 const clickOpenPopupProfile = () => {
   transferTextContentPopup()
-  enableSubmitButton()
+  profileValidatorForm.actionButttonState()
   profileValidatorForm.resetError()
   openPopup(popupTypeProfile)
-}
-
-const enableSubmitButton = () => {
-  const button = document.querySelector('.popup__submit')
-  button.classList.remove('popup__submit_action')
-  button.removeAttribute('disabled')
 }
 
 const transferContentMesto = () => {
@@ -88,7 +83,7 @@ const transferContentMesto = () => {
     name: popupInputValueMesto.value,
     link: popupInputValueSrc.value
   }
-  additionCards(newCard)
+  render(additionCards(newCard))
 }
 
 const resetForm = () => {
@@ -134,11 +129,11 @@ const render = (cardElement) => {
 const additionCards = (item) => {
   const card = new Card(item, '#grid-content')
   const cardElement = card._createCard()
-  render(cardElement)
+  return cardElement
 }
 
 initialCards.forEach((item) => {
-  additionCards(item)
+  render(additionCards(item))
 })
 
 clickOverlayClosedPopup()

@@ -1,6 +1,6 @@
 export default class FormValidator {
   constructor(selector, form) {
-    this._popupForm = form
+    this._popupForm = document.querySelector(form)
     this._popupSubmitAction = selector.popupSubmitAction
     this._popupSubmit = selector.popupSubmit
     this._popupInput = selector.popupInput
@@ -46,8 +46,7 @@ export default class FormValidator {
     this._inputList.forEach((el) => {
       el.addEventListener('input', () => {
         this._isValid(el)
-        this._actionButttonState()
-        this.disabledButttonState()
+        this._toggleButttonState()
       })
     })
   }
@@ -62,18 +61,20 @@ export default class FormValidator {
     })
   }
 
-  disabledButttonState() {
-    if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._popupSubmitAction)
-      this._buttonElement.setAttribute('disabled', true)
-    }
+  _toggleButttonState() {
+    this._hasInvalidInput() ?
+      this.disabledButttonState() :
+      this.actionButttonState()
   }
 
-  _actionButttonState() {
-    if (!this._hasInvalidInput()) {
-      this._buttonElement.classList.remove(this._popupSubmitAction)
-      this._buttonElement.removeAttribute('disabled')
-    }
+  disabledButttonState() {
+    this._buttonElement.classList.add(this._popupSubmitAction)
+    this._buttonElement.setAttribute('disabled', true)
+  }
+
+  actionButttonState() {
+    this._buttonElement.classList.remove(this._popupSubmitAction)
+    this._buttonElement.removeAttribute('disabled')
   }
 
 }
