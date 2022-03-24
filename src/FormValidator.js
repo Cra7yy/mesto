@@ -40,7 +40,7 @@ export default class FormValidator {
     }
   }
 
-  _setEventListeners() {
+  _addEventListeners() {
     this.disabledButttonState()
 
     this._inputList.forEach((el) => {
@@ -52,7 +52,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._setEventListeners()
+    this._addEventListeners()
   }
 
   _hasInvalidInput() {
@@ -76,5 +76,4 @@ export default class FormValidator {
     this._buttonElement.classList.remove(this._popupSubmitAction)
     this._buttonElement.removeAttribute('disabled')
   }
-
 }

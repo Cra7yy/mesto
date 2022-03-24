@@ -1,20 +1,21 @@
-import {openPopup, popupTypeImage, popupImageSrc, popupImageName} from './script.js'
-
 export default class Card {
-  constructor(data, selector) {
-    this.data = data
-    this._name = data.name
-    this._link = data.link
+  constructor({
+    item,
+    openPopupImage
+  }, selector) {
+    this.data = item
+    this._name = item.name
+    this._link = item.link
+    this._openPopupImage = openPopupImage
     this._selector = selector
   }
 
   _getElement() {
     const cardElement = document.querySelector(this._selector).content.querySelector('.grid-element').cloneNode(true)
-
     return cardElement
   }
 
-  _createCard() {
+  createCard() {
     this._element = this._getElement()
     const img = this._element.querySelector('.grid-element__img')
 
@@ -29,7 +30,7 @@ export default class Card {
   addEventListeners() {
     this._element.querySelector('.grid-element__like').addEventListener('click', this._clickLike)
     this._element.querySelector('.grid-element__remove').addEventListener('click', () => this._clickRemove())
-    this._element.querySelector('.grid-element__img').addEventListener('click', () => this._openPopupImage(this.data))
+    this._element.querySelector('.grid-element__img').addEventListener('click', () => this._openPopupImage())
   }
 
   _clickRemove() {
@@ -39,14 +40,4 @@ export default class Card {
   _clickLike(event) {
     event.target.classList.toggle('grid-element__like_action')
   }
-
-  _openPopupImage(card) {
-    popupImageSrc.src = card.link
-    popupImageSrc.alt = card.name
-    popupImageName.textContent = card.name
-
-    openPopup(popupTypeImage)
-  }
 }
-
-
