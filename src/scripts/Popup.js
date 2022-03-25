@@ -1,7 +1,7 @@
 import {
   popups,
   popupCrosses
-} from './index.js'
+} from './script.js'
 
 export default class Popup {
   constructor(selector) {

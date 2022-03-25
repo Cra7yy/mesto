@@ -1,5 +1,3 @@
-import '../pages/index.css'
-
 import Card from './Card.js'
 import FormValidator from './FormValidator.js';
 import {
@@ -9,6 +7,8 @@ import Section from './Section.js'
 import PopupWithForm from './PopupWithForm.js'
 import PopupWithImage from './PopupWithImage.js'
 import UserInfo from './UserInfo.js'
+
+import '../pages/index.css'
 
 const validationConfig = {
   popupSubmitAction: 'popup__submit_action',

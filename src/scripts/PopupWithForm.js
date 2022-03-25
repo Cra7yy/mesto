@@ -19,11 +19,11 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputProfileValues() {
-    const userData = {
+    const newCard = {
       name: this._popupForm.querySelector('.popup__input_value_name').value,
       sign: this._popupForm.querySelector('.popup__input_value_sign').value
     }
-    return userData
+    return newCard
   }
 
   _savePopupForm(event) {
