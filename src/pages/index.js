@@ -34,9 +34,8 @@ const popupMestoWithForm = new PopupWithForm({
     const card = {
         name: item.title,
         link: item.src
-      }
-
-      gridConteiner.prepend(createCard(card))
+    }
+    sectionRender.addItem(createCard(card))
     }
   },
   '.popup_type_mesto'
@@ -59,9 +58,8 @@ const createCard = (itemEl)=> {
   const card = new Card({
     item: itemEl,
     open: () => {
-      const popupWithImage = new PopupWithImage(itemEl, '.popup_type_image')
-      popupWithImage.open()
-      popupWithImage.addEventListeners()
+      const popupWithImage = new PopupWithImage('.popup_type_image')
+      popupWithImage.open(itemEl)
     }
   }, '#grid-content')
   const cardElement = card.createCard()
@@ -80,13 +78,11 @@ const clickOpenPopupProfile = () => {
   profileValidatorForm.resetError()
   transferTextContentPopup()
   popupProfileWithForm.open()
-  popupProfileWithForm.addEventListeners()
 }
 
 const clickOpenPopupMesto = () => {
   mestoValidatorForm.disabledButttonState()
   popupMestoWithForm.open()
-  popupMestoWithForm.addEventListeners()
 }
 
 sectionRender.renderItems()
