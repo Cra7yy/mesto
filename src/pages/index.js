@@ -20,12 +20,6 @@ import './index.css'
 const profileValidatorForm = new FormValidator(validationConfig, '.popup_type_profile')
 const mestoValidatorForm = new FormValidator(validationConfig, '.popup_type_mesto')
 
-// export const popups = document.querySelectorAll('.popup')
-// export const popupCrosses = document.querySelectorAll('.popup__cross')
-// export const popupTypeImage = document.querySelector('.popup_type_image')
-// export const popupImageSrc = popupTypeImage.querySelector('.popup-image__src')
-// export const popupImageName = popupTypeImage.querySelector('.popup-image__name')
-
 const sectionRender = new Section({
     items: initialCards,
     renderer: (el) => {

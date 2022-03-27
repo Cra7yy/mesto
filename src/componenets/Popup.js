@@ -2,7 +2,6 @@ export default class Popup {
   constructor(selector) {
     this._popup = document.querySelector(selector)
     this._handleEscKeyClosedPopup = this._handleEscKeyClosedPopup.bind(this)
-    // this._clickCrossPopupClosed = this._clickCrossPopupClosed.bind(this)
     this._clickOverlayClosedPopup = this._clickOverlayClosedPopup.bind(this)
   }
 
@@ -17,10 +16,6 @@ export default class Popup {
       this.close()
     }
   }
-
-  // _clickCrossPopupClosed() {
-  //   console.log(this._popup.document.querySelector('.popup__cross'))
-  // }
 
   addEventListeners() {
     this._popup.querySelector('.popup__cross').addEventListener('click', this.close.bind(this))
