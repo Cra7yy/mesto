@@ -1,12 +1,12 @@
 export default class Card {
   constructor({
     item,
-    openPopupImage
+    open
   }, selector) {
     this.data = item
     this._name = item.name
     this._link = item.link
-    this._openPopupImage = openPopupImage
+    this._open = open
     this._selector = selector
   }
 
@@ -23,14 +23,14 @@ export default class Card {
     img.src = this._link
     img.alt = this._name
 
-    this.addEventListeners()
+    this._addEventListeners()
     return this._element
   }
 
-  addEventListeners() {
+  _addEventListeners() {
     this._element.querySelector('.grid-element__like').addEventListener('click', this._clickLike)
     this._element.querySelector('.grid-element__remove').addEventListener('click', () => this._clickRemove())
-    this._element.querySelector('.grid-element__img').addEventListener('click', () => this._openPopupImage())
+    this._element.querySelector('.grid-element__img').addEventListener('click', () => this._open())
   }
 
   _clickRemove() {
