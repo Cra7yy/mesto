@@ -46,7 +46,6 @@ const validationConfig = {
 
 const profileEditor = document.querySelector('.profile__editor')
 const profileMesto = document.querySelector('.profile__mesto')
-const gridConteiner = document.querySelector('.grid-conteiner')
 const popupInputValueName = document.querySelector('.popup__input_value_name')
 const popupInputValueSign = document.querySelector('.popup__input_value_sign')
 
@@ -55,7 +54,6 @@ export {
   validationConfig,
   profileEditor,
   profileMesto,
-  gridConteiner,
   popupInputValueName,
   popupInputValueSign
 }

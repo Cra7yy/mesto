@@ -1,16 +1,15 @@
-import Card from '../componenets/Card.js'
-import FormValidator from '../componenets/FormValidator.js';
-import Section from '../componenets/Section.js'
-import PopupWithForm from '../componenets/PopupWithForm.js'
-import PopupWithImage from '../componenets/PopupWithImage.js'
-import UserInfo from '../componenets/UserInfo.js'
+import Card from '../componets/Card.js'
+import FormValidator from '../componets/FormValidator.js';
+import Section from '../componets/Section.js'
+import PopupWithForm from '../componets/PopupWithForm.js'
+import PopupWithImage from '../componets/PopupWithImage.js'
+import UserInfo from '../componets/UserInfo.js'
 
 import {
   initialCards,
   validationConfig,
   profileEditor,
   profileMesto,
-  gridConteiner,
   popupInputValueName,
   popupInputValueSign
 } from '../utils/constans.js'
@@ -41,6 +40,8 @@ const popupMestoWithForm = new PopupWithForm({
   '.popup_type_mesto'
 )
 
+popupMestoWithForm.addEventListeners()
+
 const userInfo = new UserInfo({
   profileTitle: '.profile__title',
   profileSubtitle: '.profile__subtitle',
@@ -54,17 +55,23 @@ const popupProfileWithForm = new PopupWithForm({
   '.popup_type_profile'
 )
 
+popupProfileWithForm.addEventListeners()
+
+
 const createCard = (itemEl)=> {
   const card = new Card({
     item: itemEl,
     open: () => {
-      const popupWithImage = new PopupWithImage('.popup_type_image')
       popupWithImage.open(itemEl)
     }
   }, '#grid-content')
   const cardElement = card.createCard()
   return cardElement
 }
+
+const popupWithImage = new PopupWithImage('.popup_type_image')
+popupWithImage.addEventListeners()
+
 
 const transferTextContentPopup = () => {
   const info = userInfo.getUserInfo()
