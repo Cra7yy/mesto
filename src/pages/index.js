@@ -95,7 +95,7 @@ popupProfileWithForm.addEventListeners()
 
 const avatarPopup = new PopupWithForm({
   handleSubmit: (item) => {
-    api.updateAvatar(item.src)
+    api.updateAvatar(item.avatar)
       .then((res) => {
         userInfo.setUserInfo(res)
       })

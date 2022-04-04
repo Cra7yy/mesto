@@ -19,7 +19,7 @@
     <section class="profile">
       <div class="profile__content">
         <div class="profile__img-container">
-        <img src="<%=require('./images/image.jpg')%>" alt="фото профиля" class="profile__img">
+        <img src="" alt="фото профиля" class="profile__img">
         <div class="prodile__img-shadow"></div>
       </div>
         <div class="profile__text-content">
@@ -83,9 +83,9 @@
       <h2 class="popup__title">Обновить аватар</h2>
       <form name="avatar" action="#" method="post" enctype="multipart/form-data"
         class="popup__form popup__form_type_avatar" novalidate>
-        <input id="src-input" type="url" name="src" value="" class="popup__input popup__input_value_src"
+        <input id="avatar-input" type="url" name="avatar" value="" class="popup__input popup__input_value_avatar"
           placeholder="Ссылка на картинку" required>
-          <span class="src-input-error popup__input-error"></span>
+          <span class="avatar-input-error popup__input-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
