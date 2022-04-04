@@ -1,4 +1,4 @@
-.prodile__shadow {
+.prodile__img-shadow {
   border-radius: 50%;
   position: absolute;
   left: 0;
@@ -8,7 +8,7 @@
   transition: background-color 350ms;
 }
 
-.prodile__shadow:hover {
+.prodile__img-shadow:hover {
   background-image: url('../../../images/pensol.svg');
   background-position: center;
   background-repeat: no-repeat;
