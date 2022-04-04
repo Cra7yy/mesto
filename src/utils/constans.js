@@ -10,7 +10,7 @@ const profileEditor = document.querySelector('.profile__editor')
 const profileMesto = document.querySelector('.profile__mesto')
 const popupInputValueName = document.querySelector('.popup__input_value_name')
 const popupInputValueSign = document.querySelector('.popup__input_value_sign')
-const profileImgShadow = document.querySelector('.prodile__img-shadow')
+const profileImgShadow = document.querySelector('.profile__img-shadow')
 
 export {
   validationConfig,

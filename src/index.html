@@ -19,9 +19,9 @@
     <section class="profile">
       <div class="profile__content">
         <div class="profile__img-container">
-        <img src="#" alt="фото профиля" class="profile__img">
-        <span class="prodile__img-shadow"></span>
-      </div>
+          <img src="#" alt="фото профиля" class="profile__img">
+          <span class="profile__img-shadow"></span>
+        </div>
         <div class="profile__text-content">
           <div class="profile__element">
             <h1 class="profile__title"></h1>
@@ -51,9 +51,11 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="profile" action="#" method="post" enctype="multipart/form-data"
         class="popup__form popup__form_type_profile" novalidate>
-        <input id="name-input" type="text" name="name" value="" class="popup__input popup__input_value_name" minlength="2" maxlength="40" required>
+        <input id="name-input" type="text" name="name" value="" class="popup__input popup__input_value_name"
+          minlength="2" maxlength="40" required>
         <span class="name-input-error popup__input-error"></span>
-        <input id="sign-input" type="text" name="sign" value="" class="popup__input popup__input_value_sign" minlength="2" maxlength="200" required>
+        <input id="sign-input" type="text" name="sign" value="" class="popup__input popup__input_value_sign"
+          minlength="2" maxlength="200" required>
         <span class="sign-input-error popup__input-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
@@ -68,10 +70,10 @@
         class="popup__form popup__form_type_mesto" novalidate>
         <input id="title-input" type="text" name="title" value="" class="popup__input popup__input_value_mesto"
           placeholder="Название" minlength="2" maxlength="30" required>
-          <span class="title-input-error popup__input-error"></span>
+        <span class="title-input-error popup__input-error"></span>
         <input id="src-input" type="url" name="src" value="" class="popup__input popup__input_value_src"
           placeholder="Ссылка на картинку" required>
-          <span class="src-input-error popup__input-error"></span>
+        <span class="src-input-error popup__input-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
@@ -85,7 +87,7 @@
         class="popup__form popup__form_type_avatar" novalidate>
         <input id="avatar-input" type="url" name="avatar" value="" class="popup__input popup__input_value_avatar"
           placeholder="Ссылка на картинку" required>
-          <span class="avatar-input-error popup__input-error"></span>
+        <span class="avatar-input-error popup__input-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
@@ -117,9 +119,9 @@
       <div class="grid-element__sign">
         <h2 class="grid-element__title"></h2>
         <div class="grid-element__likes">
-        <button type="button" class="grid-element__like"></button>
-        <span class="grid-element__span-like"></span>
-      </div>
+          <button type="button" class="grid-element__like"></button>
+          <span class="grid-element__span-like"></span>
+        </div>
       </div>
     </div>
   </template>
