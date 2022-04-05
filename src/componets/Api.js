@@ -7,50 +7,50 @@ class Api {
     this._headers = headers
   }
 
+  _getResponseData(res) {
+    return res.ok ? res.json() : Promise.reject(res.status)
+  }
+
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
-        headers: this._headers
-      }).then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
-      })
-      .catch(console.log)
+      headers: this._headers
+    }).then((res) => {
+      return this._getResponseData(res)
+    })
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-        headers: this._headers
-      }).then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
-      })
-      .catch(console.log)
+      headers: this._headers
+    }).then((res) => {
+      return this._getResponseData(res)
+    })
   }
 
   editProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({
-          name: data.name,
-          about: data.sign
-        })
-      }).then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.sign
       })
-      .catch(console.log)
+    }).then((res) => {
+      return this._getResponseData(res)
+    })
   }
 
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
-        method: "POST",
-        headers: this._headers,
-        body: JSON.stringify({
-          name: data.name,
-          link: data.link
-        })
-      }).then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
       })
-      .catch(console.log)
+    }).then((res) => {
+      return this._getResponseData(res)
+    })
   }
 
   deleteCard(id) {
@@ -59,9 +59,8 @@ class Api {
         headers: this._headers,
       })
       .then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
+        return this._getResponseData(res)
       })
-      .catch(console.log)
   }
 
   deleteLike(id) {
@@ -70,9 +69,8 @@ class Api {
         headers: this._headers,
       })
       .then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
+        return this._getResponseData(res)
       })
-      .catch(console.log)
   }
 
   addLike(id) {
@@ -81,23 +79,21 @@ class Api {
         headers: this._headers,
       })
       .then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
+        return this._getResponseData(res)
       })
-      .catch(console.log)
   }
 
   updateAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: "PATCH",
         headers: this._headers,
-      body: JSON.stringify({
-        avatar: avatar
+        body: JSON.stringify({
+          avatar: avatar
         })
       })
       .then((res) => {
-        return res.ok ? res.json() : Promise.reject(res.status)
+        return this._getResponseData(res)
       })
-      .catch(console.log)
   }
 }
 

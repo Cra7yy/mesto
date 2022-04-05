@@ -62,6 +62,7 @@ export default class Card {
       this._handleLikeClick(this._id)
     })
     this._element.querySelector('.grid-element__remove').addEventListener('click', () => {
+      console.log(this._id)
       this._handleDeleteClick(this._id)
     })
     this._element.querySelector('.grid-element__img').addEventListener('click', () => this._open())

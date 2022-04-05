@@ -8,30 +8,6 @@ import {
   api
 } from '../componets/Api.js'
 
-let userId
-
-api.getProfile()
-  .then((res) => {
-    userInfo.setUserInfo(res)
-    userId = res._id
-  })
-
-api.getInitialCards()
-  .then((cardList) => {
-    cardList.forEach(data => {
-      const card = {
-        name: data.name,
-        link: data.link,
-        likes: data.likes,
-        id: data._id,
-        userId: userId,
-        ownerId: data.owner._id
-      }
-      sectionRender.addItem(createCard(card))
-    })
-  })
-
-
 import {
   validationConfig,
   profileEditor,
@@ -47,6 +23,31 @@ const profileValidatorForm = new FormValidator(validationConfig, '.popup_type_pr
 const mestoValidatorForm = new FormValidator(validationConfig, '.popup_type_mesto')
 const avatarValidatorForm = new FormValidator(validationConfig, '.popup_type_avatar')
 
+let userId
+
+api.getProfile()
+  .then((res) => {
+    userInfo.setUserInfo(res)
+    userId = res._id
+  })
+  .catch(console.log)
+
+api.getInitialCards()
+  .then((cardList) => {
+    cardList.forEach(data => {
+      const card = {
+        name: data.name,
+        link: data.link,
+        likes: data.likes,
+        id: data._id,
+        userId: userId,
+        ownerId: data.owner._id
+      }
+      sectionRender.addItem(createCard(card))
+    })
+  })
+  .catch(console.log)
+
 const sectionRender = new Section({
     renderer: (el) => {
       sectionRender.addItem(createCard(el))
@@ -56,16 +57,27 @@ const sectionRender = new Section({
 )
 
 const popupMestoWithForm = new PopupWithForm({
-    handleSubmit: (item) => {
+  handleSubmit: (item) => {
       const card = {
         name: item.title,
         link: item.src,
       }
       api.addCard(card)
         .then((res) => {
-          sectionRender.addItem(createCard(res))
+          const card = {
+            name: res.name,
+            link: res.link,
+            likes: res.likes,
+            id: res._id,
+            userId: userId,
+            ownerId: res.owner._id
+          }
+          sectionRender.addItem(createCard(card))
+          popupMestoWithForm.close()
+          popupMestoWithForm.submitRendering(false)
         })
-        .finally(popupMestoWithForm.submitRendering(false))
+        .catch(console.log)
+        .finally(popupMestoWithForm.submitRendering(true))
     }
   },
   '.popup_type_mesto'
@@ -83,9 +95,13 @@ const popupProfileWithForm = new PopupWithForm({
     handleSubmit: (item) => {
       api.editProfile(item)
         .then((res) => {
+          console.log(res)
           userInfo.setUserInfo(res)
+          popupProfileWithForm.close()
+          popupProfileWithForm.submitRendering(false)
         })
-        .finally(popupProfileWithForm.submitRendering(false))
+        .catch(console.log)
+        .finally(popupProfileWithForm.submitRendering(true))
     }
   },
   '.popup_type_profile'
@@ -98,14 +114,17 @@ const avatarPopup = new PopupWithForm({
     api.updateAvatar(item.avatar)
       .then((res) => {
         userInfo.setUserInfo(res)
+        avatarPopup.close()
+        avatarPopup.submitRendering(false)
       })
-      .finally(avatarPopup.submitRendering(false))
+      .catch(console.log)
+      .finally(avatarPopup.submitRendering(true))
   }
 }, '.popup_type_avatar')
 
 avatarPopup.addEventListeners()
 
-const confirmPopup = new PopupWithForm(()=>{} , '.popup_type_delete')
+const confirmPopup = new PopupWithForm(() => {}, '.popup_type_delete')
 confirmPopup.addEventListeners()
 
 const createCard = (itemEl) => {
@@ -121,7 +140,9 @@ const createCard = (itemEl) => {
         api.deleteCard(id)
           .then(res => {
             card.clickRemove()
+            confirmPopup.close()
           })
+          .catch(console.log)
       })
     }, (id) => {
       if (card.isLiked()) {
@@ -129,11 +150,13 @@ const createCard = (itemEl) => {
           .then((res) => {
             card.setLikes(res.likes)
           })
+          .catch(console.log)
       } else {
         api.addLike(id)
           .then((res) => {
             card.setLikes(res.likes)
           })
+          .catch(console.log)
       }
     }
   )
