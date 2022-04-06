@@ -34,6 +34,7 @@ api.getProfile()
 
 api.getInitialCards()
   .then((cardList) => {
+    cardList.reverse()
     cardList.forEach(data => {
       const card = {
         name: data.name,
@@ -196,3 +197,14 @@ avatarValidatorForm.enableValidation()
 profileEditor.addEventListener('click', clickOpenPopupProfile)
 profileMesto.addEventListener('click', clickOpenPopupMesto)
 profileImgShadow.addEventListener('click', clickOpenPopupAvatar)
+
+
+
+
+
+
+
+
+
+
+

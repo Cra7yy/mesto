@@ -9,7 +9,7 @@ export default class Section {
   }
 
   addItem(element) {
-    this._gridConteiner.append(element)
+    this._gridConteiner.prepend(element)
   }
 }
 
