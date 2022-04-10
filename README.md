@@ -11,6 +11,9 @@
 * Flex
 * Grid
 * js
+* ООП
+* webpack
+* API
 
 **Figma**
 
